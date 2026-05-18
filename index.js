@@ -114,6 +114,37 @@ window.addEventListener('scroll', () => {
 });
 
 /* ── HERO ANIMATION ─────────────────────────────────────────── */
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+function closeMobileNav() {
+    navbar.classList.remove('nav-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Open navigation menu');
+}
+
+if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+        const isOpen = navbar.classList.toggle('nav-open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
+        navToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileNav);
+    });
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMobileNav();
+    });
+
+    document.addEventListener('click', e => {
+        if (!navbar.classList.contains('nav-open')) return;
+        if (navbar.contains(e.target)) return;
+        closeMobileNav();
+    });
+}
+
 function startHeroAnim() {
     gsap.registerPlugin(ScrollTrigger);
 

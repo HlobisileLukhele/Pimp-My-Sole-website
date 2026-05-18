@@ -160,6 +160,47 @@
         }
 
         /* ── HERO ──────────────────────────────────────────────────── */
+        .nav-toggle {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: #fff;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            transition: border-color 0.25s, background 0.25s;
+        }
+
+        .nav-toggle span {
+            width: 18px;
+            height: 2px;
+            border-radius: 2px;
+            background: currentColor;
+            transition: transform 0.25s, opacity 0.2s;
+        }
+
+        .nav-toggle:hover {
+            border-color: rgba(6,182,212,0.45);
+            background: rgba(4,57,213,0.12);
+        }
+
+        nav.nav-open .nav-toggle span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        nav.nav-open .nav-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        nav.nav-open .nav-toggle span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
         #hero {
             min-height: 100vh;
             display: grid;
@@ -1325,4 +1366,509 @@
         @media (max-width: 640px) {
             .modal-panel { padding: 32px 24px 28px; }
             .service-picker { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* Mobile optimization layer */
+        @media (hover: none), (pointer: coarse) {
+            body,
+            .btn-primary,
+            .btn-ghost,
+            .nav-cta,
+            .nav-toggle,
+            .service-card,
+            .drop-card,
+            .drop-add {
+                cursor: auto;
+            }
+
+            #cursor-ring,
+            #cursor-dot {
+                display: none;
+            }
+        }
+
+        @media (max-width: 760px) {
+            html,
+            body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            body {
+                line-height: 1.5;
+            }
+
+            nav {
+                padding: 14px 16px;
+                gap: 12px;
+                background: rgba(6,8,15,0.78);
+                backdrop-filter: blur(18px);
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                flex-wrap: nowrap;
+            }
+
+            nav.scrolled {
+                padding: 12px 16px;
+            }
+
+            .nav-logo {
+                min-width: 0;
+                gap: 8px;
+                font-size: 1.15rem;
+                letter-spacing: 0.08em;
+            }
+
+            .nav-logo-icon {
+                width: 30px;
+                height: 30px;
+                border-radius: 8px;
+                flex: 0 0 auto;
+                font-size: 0.95rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 10px);
+                left: 16px;
+                right: 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                padding: 10px;
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 16px;
+                background: rgba(6,8,15,0.94);
+                box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+                backdrop-filter: blur(22px);
+                opacity: 0;
+                transform: translateY(-8px);
+                pointer-events: none;
+                visibility: hidden;
+                transition: opacity 0.22s, transform 0.22s, visibility 0.22s;
+            }
+
+            nav.nav-open .nav-links {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 14px 12px;
+                border-radius: 10px;
+                color: rgba(255,255,255,0.75);
+                font-size: 0.82rem;
+                letter-spacing: 0.16em;
+            }
+
+            .nav-links a:hover {
+                background: rgba(255,255,255,0.04);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-cta {
+                flex: 0 0 auto;
+                padding: 9px 14px;
+                font-size: 0.7rem;
+                letter-spacing: 0.12em;
+            }
+
+            .nav-toggle {
+                display: flex;
+                flex: 0 0 auto;
+            }
+
+            #hero {
+                min-height: auto;
+                grid-template-columns: minmax(0, 1fr);
+                gap: 28px;
+                padding: 104px 18px 56px;
+                text-align: center;
+                overflow: hidden;
+            }
+
+            .hero-left {
+                padding-top: 0;
+            }
+
+            .hero-eyebrow {
+                font-size: 0.62rem;
+                line-height: 1.5;
+                letter-spacing: 0.22em;
+                margin-bottom: 18px;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: clamp(3.65rem, 18vw, 5rem);
+                line-height: 0.88;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-sub {
+                max-width: none;
+                margin: 22px 0 28px;
+                font-size: 0.95rem;
+                line-height: 1.65;
+                text-align: center;
+            }
+
+            .hero-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-ghost {
+                width: 100%;
+                min-height: 48px;
+                padding: 14px 18px;
+                font-size: 0.8rem;
+                letter-spacing: 0.16em;
+                text-align: center;
+            }
+
+            .hero-stats {
+                width: 100%;
+                gap: 20px;
+                justify-content: space-between;
+                margin-top: 36px;
+            }
+
+            .stat-num {
+                font-size: 2.35rem;
+            }
+
+            .stat-label {
+                font-size: 0.58rem;
+                letter-spacing: 0.18em;
+            }
+
+            .hero-right {
+                height: 330px;
+                min-height: 0;
+                overflow: hidden;
+            }
+
+            .orbit-1 {
+                width: 260px;
+                height: 260px;
+            }
+
+            .orbit-2 {
+                width: 340px;
+                height: 340px;
+            }
+
+            .orbit-3 {
+                width: 420px;
+                height: 420px;
+            }
+
+            .sneaker-img-wrap img {
+                width: min(78vw, 320px);
+                max-width: 100%;
+            }
+
+            .sneaker-spotlight {
+                width: min(72vw, 280px);
+                bottom: -18px;
+            }
+
+            .shoe-tag,
+            .shoe-tag-line,
+            .flare,
+            .scroll-hint {
+                display: none;
+            }
+
+            .marquee-section {
+                padding: 12px 0;
+            }
+
+            .marquee-item {
+                font-size: 0.95rem;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .section-pad {
+                padding: 64px 18px;
+            }
+
+            .section-eyebrow {
+                font-size: 0.62rem;
+                line-height: 1.45;
+                letter-spacing: 0.24em;
+            }
+
+            .section-title {
+                font-size: clamp(2.8rem, 13vw, 4rem);
+                line-height: 0.95;
+            }
+
+            .services-grid,
+            .ba-grid,
+            .drops-grid,
+            .tees-grid,
+            .process-steps {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 18px;
+                margin-top: 36px;
+            }
+
+            .service-card {
+                border-radius: 18px;
+                padding: 28px 22px;
+            }
+
+            .service-icon {
+                width: 46px;
+                height: 46px;
+                margin-bottom: 20px;
+            }
+
+            .service-name {
+                font-size: 1.75rem;
+            }
+
+            .service-desc {
+                font-size: 0.86rem;
+                line-height: 1.65;
+                margin-bottom: 20px;
+            }
+
+            .ba-card,
+            .drop-card {
+                border-radius: 18px;
+            }
+
+            .ba-img-wrap img {
+                height: clamp(170px, 48vw, 230px);
+            }
+
+            .ba-footer {
+                padding: 12px 14px;
+                gap: 12px;
+            }
+
+            .ba-footer-label,
+            .ba-footer-tag {
+                font-size: 0.65rem;
+                line-height: 1.3;
+            }
+
+            .drop-info {
+                padding: 16px;
+            }
+
+            .drop-footer {
+                padding: 0 16px 16px;
+            }
+
+            .drop-thumb {
+                aspect-ratio: 4 / 3;
+            }
+
+            .tee-mockup-card {
+                padding: 22px;
+                border-radius: 20px;
+            }
+
+            .tee-logo-display {
+                padding: 16px 18px;
+            }
+
+            .tee-logo-display p {
+                font-size: clamp(2rem, 12vw, 2.8rem);
+            }
+
+            .tee-features {
+                margin-top: 28px;
+                gap: 16px;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .process-step {
+                display: grid;
+                grid-template-columns: 56px minmax(0, 1fr);
+                gap: 16px;
+                text-align: left;
+                padding: 0;
+                align-items: start;
+            }
+
+            .step-num {
+                width: 56px;
+                height: 56px;
+                margin: 0;
+                font-size: 1.35rem;
+            }
+
+            .step-name {
+                font-size: 1.2rem;
+                margin-bottom: 6px;
+            }
+
+            .contact-wrap {
+                display: block;
+                padding: 28px 18px;
+                border-radius: 20px;
+            }
+
+            .contact-info-item {
+                gap: 12px;
+                margin-bottom: 18px;
+            }
+
+            .contact-info-title {
+                font-size: 0.86rem;
+                line-height: 1.25;
+                overflow-wrap: anywhere;
+            }
+
+            .contact-info-sub {
+                font-size: 0.78rem;
+            }
+
+            .form-grid {
+                margin-top: 28px;
+            }
+
+            .form-field {
+                min-height: 48px;
+                padding: 14px 16px;
+                border-radius: 12px;
+                font-size: 16px;
+            }
+
+            footer {
+                padding: 30px 18px;
+            }
+
+            .footer-links {
+                width: 100%;
+                justify-content: center;
+                gap: 18px;
+                flex-wrap: wrap;
+            }
+
+            #booking-modal {
+                align-items: flex-end;
+                padding: 10px;
+            }
+
+            .modal-panel {
+                max-height: calc(100dvh - 20px);
+                border-radius: 20px;
+                padding: 30px 18px 22px;
+            }
+
+            .modal-close {
+                top: 14px;
+                right: 14px;
+            }
+
+            .modal-steps {
+                margin-bottom: 24px;
+            }
+
+            .modal-step {
+                flex-direction: column;
+                gap: 6px;
+                min-width: 54px;
+                text-align: center;
+                font-size: 0.58rem;
+                letter-spacing: 0.08em;
+            }
+
+            .modal-step-line {
+                margin: 0 4px;
+            }
+
+            .modal-title {
+                font-size: 1.9rem;
+            }
+
+            .modal-sub {
+                margin-bottom: 22px;
+            }
+
+            .service-picker {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .service-pill {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                column-gap: 12px;
+                align-items: center;
+                padding: 14px;
+            }
+
+            .pill-icon {
+                grid-row: span 2;
+            }
+
+            .location-picker {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .loc-pill {
+                min-width: 0;
+            }
+
+            .summary-card {
+                padding: 16px;
+            }
+
+            .summary-row {
+                display: block;
+            }
+
+            .summary-val {
+                margin-top: 4px;
+                text-align: left;
+                overflow-wrap: anywhere;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .nav-cta {
+                padding-inline: 12px;
+                letter-spacing: 0.08em;
+            }
+
+            .hero-title {
+                font-size: 3.25rem;
+            }
+
+            .hero-stats {
+                gap: 14px;
+            }
+
+            .stat-num {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.55rem;
+            }
         }
