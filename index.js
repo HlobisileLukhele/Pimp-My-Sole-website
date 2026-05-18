@@ -208,20 +208,6 @@ function startHeroAnim() {
     });
 
     /* ── SNEAKER PARALLAX ON SCROLL ─────────────────────────── */
-    gsap.to('#sneaker-wrap', {
-        scrollTrigger: {
-            trigger: '#hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1.5
-        },
-        y: -120,
-        rotation: -8,
-        scale: 0.85,
-        filter: 'blur(4px)',
-        ease: 'none'
-    });
-
     /* ── 3D TILT on mouse move ──────────────────────────────── */
     const heroRight = document.querySelector('.hero-right');
     heroRight.addEventListener('mousemove', e => {

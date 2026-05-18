@@ -259,6 +259,7 @@
         .hero-left {
             position: relative; z-index: 10;
             padding-top: 100px;
+            grid-column: 1;
         }
 
         .hero-eyebrow {
@@ -398,6 +399,7 @@
             align-items: center;
             justify-content: center;
             z-index: 10;
+            grid-column: 2;
         }
 
         /* Circular orbit rings */
@@ -455,7 +457,7 @@
         .sneaker-img-wrap {
             position: relative;
             display: inline-block;
-            opacity: 0;
+            opacity: 1;
         }
 
         .sneaker-img-wrap img {
@@ -1097,6 +1099,7 @@
         /* ── RESPONSIVE ────────────────────────────────────────────── */
         @media (max-width: 1024px) {
             #hero { grid-template-columns: 1fr; padding: 120px 40px 60px; text-align: center; }
+            .hero-left, .hero-right { grid-column: 1; }
             .hero-right { height: 50vh; }
             .sneaker-img-wrap img { width: 320px; }
             .section-pad { padding: 80px 40px; }
