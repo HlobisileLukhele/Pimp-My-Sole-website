@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pimp My Sole | Premium Sneaker Care & Streetwear</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<base target="_blank">
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+
+<!-- Loader -->
+<div id="loader">
+    <div style="text-align:center; display:flex; flex-direction:column; align-items:center; gap:24px;">
+        <p class="loader-label">Initialising Experience</p>
+        <div class="loader-pct" id="loader-pct">0%</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar"></div>
+        </div>
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:0.25em; color:rgba(255,255,255,0.2);">PIMP MY SOLE</p>
+    </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+    <div class="nav-logo">
+        <div class="nav-logo-icon">P</div>
+        PIMP MY SOLE
+    </div>
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#before-after">Results</a>
+        <a href="#sneakers">Shop</a>
+        <a href="#tees">Merch</a>
+        <a href="#about">Contact</a>
+    </div>
+    <button class="nav-cta open-booking" style="cursor:pointer;">Book Now</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <!-- atmospheric elements -->
+    <div class="hero-glow"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-scanline"></div>
+
+    <!-- LEFT -->
+    <div class="hero-left">
+        <p class="hero-eyebrow" id="hero-eyebrow">KZN's Premium Sneaker Care &nbsp;·&nbsp; Est. 2022</p>
+        <h1 class="hero-title" id="hero-title" aria-label="Give Your Kicks That New Life">
+            <span class="line"><span class="word">GIVE</span> <span class="word">YOUR</span></span>
+            <span class="line"><span class="word gradient-word">KICKS</span> <span class="word">THAT</span></span>
+            <span class="line"><span class="word">NEW</span> <span class="word">LIFE</span></span>
+        </h1>
+        <p class="hero-sub" id="hero-sub">
+            Professional sneaker cleaning, restoration, and resale. 
+            Based in Durban & Pietermaritzburg. We don't just clean — we transform.
+        </p>
+        <div class="hero-actions" id="hero-actions">
+            <button class="btn-primary open-booking" style="cursor:pointer;">Clean My Sole</button>
+            <button class="btn-ghost">Shop Kicks</button>
+        </div>
+        <div class="hero-stats" id="hero-stats">
+            <div>
+                <p class="stat-num" data-count="50">0</p>
+                <p class="stat-label">Pairs Cleaned</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div>
+                <p class="stat-num">98%</p>
+                <p class="stat-label">Satisfaction</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div>
+                <p class="stat-num" data-count="2">0</p>
+                <p class="stat-label">Locations</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT — cinematic sneaker reveal -->
+    <div class="hero-right">
+        <!-- orbit rings -->
+        <div class="orbit-ring orbit-1"><div class="orbit-dot"></div></div>
+        <div class="orbit-ring orbit-2"><div class="orbit-dot orbit-dot-2" style="top:auto;bottom:-3px;"></div></div>
+        <div class="orbit-ring orbit-3"></div>
+
+        <!-- particle canvas -->
+        <canvas id="particle-canvas"></canvas>
+
+        <!-- lens flares -->
+        <div class="flare flare-1"></div>
+        <div class="flare flare-2"></div>
+        <div class="flare flare-3"></div>
+
+        <!-- floating info tags -->
+        <div class="shoe-tag" id="tag-clean" style="right:5%; top:32%;">
+            <span style="color:rgba(255,255,255,0.4); font-size:0.65rem;">Service</span>
+            <span class="tag-val">Deep Clean</span>
+        </div>
+        <div class="shoe-tag-line" id="tag-line-clean" style="right:calc(5% + 110px); top:calc(32% + 20px); width:60px;"></div>
+
+        <div class="shoe-tag" id="tag-loc" style="left:2%; bottom:38%;">
+            <span style="color:rgba(255,255,255,0.4); font-size:0.65rem;">Location</span>
+            <span class="tag-val">DBN · PMB</span>
+        </div>
+
+        <div class="shoe-tag" id="tag-price" style="left:5%; top:28%;">
+            <span style="color:rgba(255,255,255,0.4); font-size:0.65rem;">Starting from</span>
+            <span class="tag-val">R150</span>
+        </div>
+
+        <!-- the sneaker -->
+        <div class="sneaker-platform">
+            <div class="sneaker-spotlight"></div>
+            <div class="sneaker-img-wrap" id="sneaker-wrap">
+                <img src="assets/download-Photoroom.png" alt="Saucony Sneaker" id="hero-sneaker">
+            </div>
+        </div>
+
+        <!-- scroll hint -->
+        <div class="scroll-hint" id="scroll-hint">
+            <div class="scroll-hint-line"></div>
+            <p class="scroll-hint-text">Scroll</p>
+        </div>
+    </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+    <div class="marquee-track" id="marquee">
+        <!-- filled by JS -->
+    </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="section-pad">
+    <div class="sr">
+        <p class="section-eyebrow">What We Do</p>
+        <h2 class="section-title">Our Services</h2>
+    </div>
+    <div class="services-grid">
+        <div class="service-card sr">
+            <div class="service-icon">🧼</div>
+            <h3 class="service-name">Deep Clean</h3>
+            <p class="service-desc">Premium hand-cleaning using specialized solutions. Every material treated with care — leather, suede, mesh, or canvas.</p>
+            <ul class="service-features">
+                <li>Sole whitening</li>
+                <li>Deodorizing treatment</li>
+                <li>Lace cleaning</li>
+            </ul>
+            <p class="service-price">From R150</p>
+        </div>
+        <div class="service-card sr" style="transition-delay:0.1s">
+            <div class="service-icon">🔧</div>
+            <h3 class="service-name">Restoration</h3>
+            <p class="service-desc">Full revival service. Midsole repaint, reglue, de-yellowing, and upper repair. Bring your grails back to life.</p>
+            <ul class="service-features">
+                <li>Midsole repaint</li>
+                <li>De-yellowing</li>
+                <li>Re-glue & stitch</li>
+            </ul>
+            <p class="service-price">From R350</p>
+        </div>
+        <div class="service-card sr" style="transition-delay:0.2s">
+            <div class="service-icon">👟</div>
+            <h3 class="service-name">Resell</h3>
+            <p class="service-desc">Verified authentic sneakers. We source, clean, and certify. Buy with confidence from KZN's trusted sneaker plug.</p>
+            <ul class="service-features">
+                <li>100% Authentic</li>
+                <li>Pre-cleaned</li>
+                <li>Quality graded</li>
+            </ul>
+            <p class="service-price">Varies</p>
+        </div>
+    </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section id="before-after" class="section-pad">
+    <div class="sr">
+        <p class="section-eyebrow">Real Results</p>
+        <h2 class="section-title">Before & After</h2>
+    </div>
+    <div class="ba-grid">
+        <div class="ba-card sr">
+            <div class="ba-label">Puma </div>
+            <div class="ba-pair">
+                <div class="ba-img-wrap">
+                    <img src="assets/Puma.jpeg" alt="Puma Before">
+                    <span class="ba-side-label">Before</span>
+                </div>
+                <div class="ba-divider"><div class="ba-divider-dot">↔</div></div>
+                <div class="ba-img-wrap after-wrap">
+                    <img src="assets/Puma1.jpeg" alt="Puma After">
+                    <span class="ba-side-label">After</span>
+                </div>
+            </div>
+            <div class="ba-footer">
+                <span class="ba-footer-label">Transformation</span>
+                <span class="ba-footer-tag">Deep Clean ✓</span>
+            </div>
+        </div>
+        <div class="ba-card sr" style="transition-delay:0.1s">
+            <div class="ba-label">Nike Air </div>
+            <div class="ba-pair">
+                <div class="ba-img-wrap">
+                    <img src="assets/nikeAir2.jpeg" alt="Nike Before">
+                    <span class="ba-side-label">Before</span>
+                </div>
+                <div class="ba-divider"><div class="ba-divider-dot">↔</div></div>
+                <div class="ba-img-wrap after-wrap">
+                    <img src="assets/NikeAIR.jpeg" alt="Nike After">
+                    <span class="ba-side-label">After</span>
+                </div>
+            </div>
+            <div class="ba-footer">
+                <span class="ba-footer-label">Transformation</span>
+                <span class="ba-footer-tag">Restoration ✓</span>
+            </div>
+        </div>
+        <div class="ba-card sr" style="transition-delay:0.2s">
+            <div class="ba-label">Cumpas </div>
+            <div class="ba-pair">
+                <div class="ba-img-wrap">
+                    <img src="assets/cumpas2.jpeg" alt="Cumpas Before">
+                    <span class="ba-side-label">Before</span>
+                </div>
+                <div class="ba-divider"><div class="ba-divider-dot">↔</div></div>
+                <div class="ba-img-wrap after-wrap">
+                    <img src="assets/cumpas.jpeg" alt="Cumpas After">
+                    <span class="ba-side-label">After</span>
+                </div>
+            </div>
+            <div class="ba-footer">
+                <span class="ba-footer-label">Transformation</span>
+                <span class="ba-footer-tag">Deep Clean ✓</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FRESH DROPS -->
+<section id="sneakers" class="section-pad">
+    <div class="sr" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;">
+        <div>
+            <p class="section-eyebrow">Available Now</p>
+            <h2 class="section-title">Pre-loved Drops</h2>
+        </div>
+        <button class="btn-ghost" style="cursor:none;">View All Kicks →</button>
+    </div>
+    <div class="drops-grid">
+        <div class="drop-card sr">
+            <div class="drop-thumb">
+                <div class="drop-thumb-bg" style="background:radial-gradient(circle, rgba(255,50,50,0.3), transparent);"></div>
+                    <img src="assets/Hoka.jpeg" alt="Cumpas After">
+            </div>
+            <div class="drop-info">
+                <p class="drop-name">Jordan 1 High</p>
+                <p class="drop-sub">"Chicago" · Size 9</p>
+            </div>
+            <div class="drop-footer">
+                <span class="drop-price">R2,800</span>
+                <button class="drop-add">+</button>
+            </div>
+        </div>
+        <div class="drop-card sr" style="transition-delay:0.08s">
+            <div class="drop-thumb">
+                <div class="drop-thumb-bg" style="background:radial-gradient(circle, rgba(50,100,255,0.3), transparent);"></div>
+                    <img src="assets/ffblast+.jpeg" alt="Cumpas After">
+            </div>
+            <div class="drop-info">
+                <p class="drop-name">Nike Dunk Low</p>
+                <p class="drop-sub">"Kentucky" · Size 8</p>
+            </div>
+            <div class="drop-footer">
+                <span class="drop-price">R1,900</span>
+                <button class="drop-add">+</button>
+            </div>
+        </div>
+        <div class="drop-card sr" style="transition-delay:0.16s">
+            <div class="drop-thumb">
+                <div class="drop-thumb-bg" style="background:radial-gradient(circle, rgba(200,200,50,0.3), transparent);"></div>
+                    <img src="assets/ffblast.jpeg" alt="Cumpas After">
+            </div>
+            <div class="drop-info">
+                <p class="drop-name">Yeezy 350 V2</p>
+                <p class="drop-sub">"Zebra" · Size 10</p>
+            </div>
+            <div class="drop-footer">
+                <span class="drop-price">R3,200</span>
+                <button class="drop-add">+</button>
+            </div>
+        </div>
+        <div class="drop-card sr" style="transition-delay:0.24s">
+            <div class="drop-thumb">
+                <div class="drop-thumb-bg" style="background:radial-gradient(circle, rgba(50,200,100,0.3), transparent);"></div>
+                    <img src="assets/Fujispeed.jpeg" alt="Cumpas After">
+            </div>
+            <div class="drop-info">
+                <p class="drop-name">New Balance 550</p>
+                <p class="drop-sub">"Green/Yellow" · Size 9</p>
+            </div>
+            <div class="drop-footer">
+                <span class="drop-price">R1,500</span>
+                <button class="drop-add">+</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- TEES -->
+<section id="tees" class="section-pad">
+    <div class="sr">
+        <p class="section-eyebrow">Merch Drop</p>
+        <h2 class="section-title">Pimp My Sole Tees</h2>
+    </div>
+    <div class="tees-grid">
+        <div class="tee-mockup-card sr">
+            <div class="tee-bg-glow"></div>
+            <div class="tee-visual">
+                <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(4,57,213,0.15), transparent 60%);"></div>
+                <div class="tee-visual-inner">
+                    <div class="tee-logo-display">
+                        <p>PIMP<br>MY<br>SOLE</p>
+                        <span class="tee-sub-text">KZN · EST. 2022</span>
+                    </div>
+                    <p style="font-size:0.72rem; color:rgba(255,255,255,0.3); margin-top:20px; font-family:'Barlow Condensed',sans-serif; letter-spacing:0.12em; text-transform:uppercase;">Classic Logo Tee — Black</p>
+                </div>
+            </div>
+        </div>
+        <div class="sr" style="transition-delay:0.1s">
+            <p style="font-size:1rem; color:rgba(255,255,255,0.4); line-height:1.8; margin-bottom:40px;">
+                Rep the brand. Premium cotton, custom designs, and that streetwear edge. 
+                Limited drops — when they're gone, they're gone.
+            </p>
+            <div class="tee-features">
+                <div class="tee-feat">
+                    <div class="tee-feat-icon">✓</div>
+                    <div>
+                        <p class="tee-feat-name">100% Premium Cotton</p>
+                        <p class="tee-feat-sub">Heavyweight, durable fabric</p>
+                    </div>
+                </div>
+                <div class="tee-feat">
+                    <div class="tee-feat-icon">✓</div>
+                    <div>
+                        <p class="tee-feat-name">Custom Graphics</p>
+                        <p class="tee-feat-sub">Designed in-house, unique to PMS</p>
+                    </div>
+                </div>
+                <div class="tee-feat">
+                    <div class="tee-feat-icon">✓</div>
+                    <div>
+                        <p class="tee-feat-name">Limited Edition</p>
+                        <p class="tee-feat-sub">Small batches, exclusive drops</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:24px; margin-top:40px;">
+                <button class="btn-primary">Shop Tees</button>
+                <span style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:rgba(255,255,255,0.5);">From R350</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="section-pad">
+    <div class="sr" style="text-align:center; margin-bottom:0;">
+        <p class="section-eyebrow">How It Works</p>
+        <h2 class="section-title">The Process</h2>
+    </div>
+    <div class="process-steps">
+        <div class="process-step sr">
+            <div class="step-num">1</div>
+            <h4 class="step-name">Drop Off</h4>
+            <p class="step-desc">Bring your kicks to our Durban or PMB location. We also accept mail-in nationwide.</p>
+        </div>
+        <div class="process-step sr" style="transition-delay:0.1s">
+            <div class="step-num">2</div>
+            <h4 class="step-name">Assess</h4>
+            <p class="step-desc">We evaluate condition and recommend the right service for your pair.</p>
+        </div>
+        <div class="process-step sr" style="transition-delay:0.2s">
+            <div class="step-num">3</div>
+            <h4 class="step-name">Transform</h4>
+            <p class="step-desc">Expert cleaning and restoration magic — we handle every material with precision.</p>
+        </div>
+        <div class="process-step sr" style="transition-delay:0.3s">
+            <div class="step-num">4</div>
+            <h4 class="step-name">Collect</h4>
+            <p class="step-desc">Pick up your fresh kicks, ready to flex. Game recognise game.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="about" class="section-pad">
+    <div class="sr" style="margin-bottom:48px;">
+        <p class="section-eyebrow">Get In Touch</p>
+        <h2 class="section-title">Let's Work<br>Together</h2>
+    </div>
+    <div class="contact-wrap sr">
+        <div>
+            <p style="font-size:0.9rem; color:rgba(255,255,255,0.4); line-height:1.8; margin-bottom:36px;">
+                Whether you need a deep clean, full restoration, or want to cop some fresh kicks — we got you. 
+                Based in KwaZulu-Natal, serving the sneaker community since 2022.
+            </p>
+            <div class="contact-info-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                    <p class="contact-info-title">Durban & Pietermaritzburg</p>
+                    <p class="contact-info-sub">KwaZulu-Natal, South Africa</p>
+                </div>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-icon">📱</div>
+                <div>
+                    <p class="contact-info-title">Instagram: @pimp_mysole</p>
+                    <p class="contact-info-sub">DM for bookings</p>
+                </div>
+            </div>
+            <div class="contact-info-item">
+                <div class="contact-icon">🚚</div>
+                <div>
+                    <p class="contact-info-title">Mail-In Service</p>
+                    <p class="contact-info-sub">Available nationwide</p>
+                </div>
+            </div>
+            <div style="margin-top:40px;">
+                <button class="btn-primary open-booking" style="cursor:pointer;">Book An Appointment →</button>
+            </div>
+        </div>
+        <div class="form-grid" id="inline-form">
+            <div class="form-row">
+                <input type="text" id="cf-name" class="form-field" placeholder="Your Name" autocomplete="name">
+                <input type="tel" id="cf-phone" class="form-field" placeholder="Phone / WhatsApp" autocomplete="tel">
+            </div>
+            <input type="email" id="cf-email" class="form-field" placeholder="Email Address" autocomplete="email">
+            <select id="cf-service" class="form-field">
+                <option value="">Select Service</option>
+                <option value="Deep Clean">Deep Clean — From R150</option>
+                <option value="Full Restoration">Full Restoration — From R350</option>
+                <option value="Resell Inquiry">Resell / Buy Kicks</option>
+                <option value="Merch Order">Merch Order</option>
+                <option value="Other">Other / General Enquiry</option>
+            </select>
+            <select id="cf-location" class="form-field">
+                <option value="">Preferred Location</option>
+                <option value="Durban">Durban Drop-Off</option>
+                <option value="Pietermaritzburg">Pietermaritzburg Drop-Off</option>
+                <option value="Mail-In">Mail-In (Nationwide)</option>
+            </select>
+            <textarea id="cf-msg" class="form-field" rows="4" placeholder="Tell us about your kicks — brand, condition, what you need..." style="resize:none;"></textarea>
+            <div id="cf-error" style="display:none; color:#f87171; font-size:0.8rem; padding:0 4px;"></div>
+            <button id="cf-submit" class="btn-primary" style="cursor:pointer; width:100%; border-radius:14px; position:relative; overflow:hidden;">
+                <span id="cf-btn-text">Send Booking Request</span>
+                <span id="cf-spinner" style="display:none; position:absolute; inset:0; display:none; align-items:center; justify-content:center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin360 0.8s linear infinite;">
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                </span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ── BOOKING MODAL ─────────────────────────────────────────── -->
+<div id="booking-modal" style="display:none;">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-panel" id="modal-panel">
+        <!-- close -->
+        <button class="modal-close" id="modal-close">✕</button>
+
+        <!-- Step indicator -->
+        <div class="modal-steps" id="modal-steps">
+            <div class="modal-step active" data-step="1"><span>1</span> Your Info</div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step" data-step="2"><span>2</span> Service</div>
+            <div class="modal-step-line"></div>
+            <div class="modal-step" data-step="3"><span>3</span> Confirm</div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div class="modal-page" id="step-1">
+            <h3 class="modal-title">Your Details</h3>
+            <p class="modal-sub">Let us know who we're talking to</p>
+            <div class="modal-fields">
+                <div class="form-row">
+                    <div class="field-wrap">
+                        <label class="field-label">Full Name *</label>
+                        <input type="text" id="m-name" class="form-field" placeholder="e.g. Sipho Dlamini" autocomplete="name">
+                    </div>
+                    <div class="field-wrap">
+                        <label class="field-label">Phone / WhatsApp *</label>
+                        <input type="tel" id="m-phone" class="form-field" placeholder="e.g. 083 000 0000" autocomplete="tel">
+                    </div>
+                </div>
+                <div class="field-wrap">
+                    <label class="field-label">Email Address</label>
+                    <input type="email" id="m-email" class="form-field" placeholder="you@example.com" autocomplete="email">
+                </div>
+            </div>
+            <div id="step1-error" class="modal-error"></div>
+            <button class="btn-primary modal-next" data-next="2" style="cursor:pointer; width:100%;">Next: Choose Service →</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="modal-page" id="step-2" style="display:none;">
+            <h3 class="modal-title">Your Service</h3>
+            <p class="modal-sub">What does your pair need?</p>
+            <div class="modal-fields">
+                <div class="service-picker" id="service-picker">
+                    <div class="service-pill" data-value="Deep Clean">
+                        <span class="pill-icon">🧼</span>
+                        <span class="pill-name">Deep Clean</span>
+                        <span class="pill-price">From R150</span>
+                    </div>
+                    <div class="service-pill" data-value="Full Restoration">
+                        <span class="pill-icon">🔧</span>
+                        <span class="pill-name">Restoration</span>
+                        <span class="pill-price">From R350</span>
+                    </div>
+                    <div class="service-pill" data-value="Resell Inquiry">
+                        <span class="pill-icon">👟</span>
+                        <span class="pill-name">Buy / Resell</span>
+                        <span class="pill-price">Varies</span>
+                    </div>
+                    <div class="service-pill" data-value="Merch Order">
+                        <span class="pill-icon">👕</span>
+                        <span class="pill-name">Merch</span>
+                        <span class="pill-price">From R350</span>
+                    </div>
+                </div>
+                <div class="field-wrap">
+                    <label class="field-label">Preferred Location *</label>
+                    <div class="location-picker" id="location-picker">
+                        <div class="loc-pill" data-value="Durban">📍 Durban</div>
+                        <div class="loc-pill" data-value="Pietermaritzburg">📍 Pietermaritzburg</div>
+                        <div class="loc-pill" data-value="Mail-In">🚚 Mail-In</div>
+                    </div>
+                </div>
+                <div class="field-wrap">
+                    <label class="field-label">Preferred Date</label>
+                    <input type="date" id="m-date" class="form-field">
+                </div>
+                <div class="field-wrap">
+                    <label class="field-label">Tell us about your kicks</label>
+                    <textarea id="m-msg" class="form-field" rows="3" placeholder="Brand, colour, condition, any special requests..." style="resize:none;"></textarea>
+                </div>
+            </div>
+            <div id="step2-error" class="modal-error"></div>
+            <div style="display:flex; gap:12px;">
+                <button class="btn-ghost modal-back" data-back="1" style="cursor:pointer; flex:1;">← Back</button>
+                <button class="btn-primary modal-next" data-next="3" style="cursor:pointer; flex:2;">Review Booking →</button>
+            </div>
+        </div>
+
+        <!-- STEP 3 — Summary -->
+        <div class="modal-page" id="step-3" style="display:none;">
+            <h3 class="modal-title">Confirm Booking</h3>
+            <p class="modal-sub">Everything look right?</p>
+            <div class="summary-card" id="summary-card">
+                <!-- filled by JS -->
+            </div>
+            <div id="step3-error" class="modal-error"></div>
+            <div style="display:flex; gap:12px; margin-top:24px;">
+                <button class="btn-ghost modal-back" data-back="2" style="cursor:pointer; flex:1;">← Edit</button>
+                <button class="btn-primary" id="modal-submit" style="cursor:pointer; flex:2; position:relative;">
+                    <span id="modal-btn-text">Confirm & Book 🎉</span>
+                    <span id="modal-spinner" style="display:none; position:absolute; inset:0; align-items:center; justify-content:center;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="animation:spin360 0.8s linear infinite;"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="modal-page" id="step-success" style="display:none; text-align:center; padding:20px 0;">
+            <div class="success-icon">✓</div>
+            <h3 class="modal-title" style="margin-top:24px;">Booking Received!</h3>
+            <p class="modal-sub" style="margin-top:8px; max-width:320px; margin-left:auto; margin-right:auto;">
+                We'll hit you up on WhatsApp or email within 24 hours to confirm your slot. Stay fresh! 👟
+            </p>
+            <div class="success-ref" id="success-ref"></div>
+            <button class="btn-primary" id="modal-done" style="cursor:pointer; margin-top:32px; width:100%;">Done — Back to Site</button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">
+        <div class="footer-logo-icon">P</div>
+        PIMP MY SOLE
+    </div>
+    <p class="footer-copy">© 2024 Pimp My Sole · KZN, South Africa</p>
+    <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+    </div>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>
